@@ -1,7 +1,7 @@
 body {
     background-image: url("images/Unknown-8.jpg");
     
-    background-size: cover;
+    background-size: 100vw 195vh;
     background-repeat: no-repeat;
     min-height: 195vh;
 
@@ -141,7 +141,7 @@ a:active {
 
 @keyframes slide-in-right {
   0% {
-    transform: translateX(1000px);
+    transform: translateX(100px);
     opacity: 0;
   }
   100% {
