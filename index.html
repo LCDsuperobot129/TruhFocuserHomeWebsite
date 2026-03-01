@@ -124,6 +124,11 @@
      <p style="color: rgb(160, 160, 160); font-family: 'Mona Sans', sans-serif; padding-right: 5rem;">Made by Kevin & Wentao</p>
     </div>
 <script>
+    // Force the browser to always start at the top on refresh
+    if (history.scrollRestoration) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
     const card = document.querySelector('.tilt-card');
     const container = document.querySelector('.image-container');
 

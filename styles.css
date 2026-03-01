@@ -1,10 +1,18 @@
 body {
     background-image: url("images/Unknown-8.jpg");
     
-    background-size: 100vw 207vh;
+    /* This ensures the image always fills the screen without gaps */
+    background-size: cover; 
+    
+    /* This keeps the image still while you scroll over it */
+    background-attachment: fixed; 
+    
     background-repeat: no-repeat;
-    min-height: 195vh;
+    background-position: center top;
 
+    /* Allows the page to be as long as it needs to be */
+    min-height: 100vh; 
+    margin: 0;
     overflow-x: hidden;
 }
 
@@ -108,10 +116,13 @@ a:active {
 /* The container handles the slide-in and the 3D space */
 .image-container {
     position: absolute; 
-    left: 67rem; 
+    /* Anchor it 5% away from the right edge instead of 67rem from left */
+    right: 17%; 
     top: 150px;
     perspective: 1200px; 
     z-index: 5;
+    /* Prevents this container from expanding the page width */
+    max-width: 40vw; 
 }
 
 .tilt-card {
