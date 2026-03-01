@@ -171,7 +171,7 @@ a:active {
     top: 0;
     left: 0;
     width: 100%;
-    height: 195vh; 
+    height: 325vh; 
     z-index: 0; /* Sit above the background image, but below text */
     overflow: hidden;
     pointer-events: none; 
@@ -191,14 +191,14 @@ a:active {
 
 /* 3. THE "BATTERIES" (Timing and Position) */
 /* Without these, they stay at the top-left forever */
-.emoji:nth-child(1) { left: 5%;  animation-duration: 13s;  animation-delay: 0s; }
-.emoji:nth-child(2) { left: 15%; animation-duration: 12s; animation-delay: 2s; }
+.emoji:nth-child(1) { left: 5%;  animation-duration: 14s;  animation-delay: 0s; }
+.emoji:nth-child(2) { left: 15%; animation-duration: 15s; animation-delay: 2s; }
 .emoji:nth-child(3) { left: 30%; animation-duration: 10s; animation-delay: 4s; }
-.emoji:nth-child(4) { left: 50%; animation-duration: 15s; animation-delay: 1s; }
+.emoji:nth-child(4) { left: 50%; animation-duration: 20s; animation-delay: 1s; }
 .emoji:nth-child(5) { left: 65%; animation-duration: 9s;  animation-delay: 5s; }
-.emoji:nth-child(6) { left: 80%; animation-duration: 13s; animation-delay: 3s; }
-.emoji:nth-child(7) { left: 90%; animation-duration: 17s; animation-delay: 6s; }
-.emoji:nth-child(8) { left: 95%; animation-duration: 20s; animation-delay: 0.5s; }
+.emoji:nth-child(6) { left: 80%; animation-duration: 17s; animation-delay: 3s; }
+.emoji:nth-child(7) { left: 90%; animation-duration: 25s; animation-delay: 6s; }
+.emoji:nth-child(8) { left: 95%; animation-duration: 30s; animation-delay: 0.5s; }
 
 /* 4. The Movement Logic */
 @keyframes fall {
@@ -206,7 +206,7 @@ a:active {
         transform: translateY(-25px) rotate(0deg);
     }
     100% {
-        transform: translateY(195vh) rotate(360deg);
+        transform: translateY(325vh) rotate(360deg);
     }
 }
 
@@ -239,32 +239,23 @@ a:active {
 }
 
 .instruction {
-  /* 1. Remove fixed heights */
-  min-height: auto; 
-  max-height: none;
-  height: auto;
+  display: flex;             /* 1. Enable Flexbox */
+  flex-direction: column;    /* 2. Stack children (the p tag) vertically */
+  justify-content: center;   /* 3. Center children vertically */
+  align-items: center;       /* 4. Center children horizontally */
 
-  /* 2. Fluid Width */
+  /* Keep your existing styles below */
   width: 85%;
   max-width: 800px;
-
-  /* 3. Proportional Padding */
-  /* This ensures the space inside the box grows/shrinks with the screen */
-  padding: clamp(20px, 5vw, 60px); 
-
-  /* From https://css.glass */
+  min-height: 400px;         /* 5. Ensure there is enough height to see the centering */
+  padding: 40px; 
   background: rgba(165, 165, 165, 0.1);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(165, 165, 165, 0.3);
-
-  display: block;
-  margin: 70px auto 100px auto; /* Combined margins */
+  margin: 70px auto 300px auto;
   position: relative;
-
-  margin-bottom: 300px;
 }
 
 .face {
