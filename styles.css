@@ -141,7 +141,7 @@ a:active {
 
 @keyframes slide-in-right {
   0% {
-    transform: translateX(50px);
+    transform: translateX(100px);
     opacity: 0;
   }
   100% {
