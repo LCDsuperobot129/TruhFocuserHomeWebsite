@@ -1,9 +1,9 @@
 body {
     background-image: url("images/Unknown-8.jpg");
     
-    background-size: 100vw 200vh;
+    background-size: 100vw 207vh;
     background-repeat: no-repeat;
-    min-height: 200vh;
+    min-height: 195vh;
 
     overflow-x: hidden;
 }
@@ -224,20 +224,20 @@ a:active {
 }
 
 .instruction {
-  min-height: 455px;
+  /* 1. Remove fixed heights */
+  min-height: auto; 
+  max-height: none;
+  height: auto;
 
-  width: fit-content;
+  /* 2. Fluid Width */
+  width: 85%;
+  max-width: 800px;
 
-  background-color: rgba(132, 132, 132, 0.094);
+  /* 3. Proportional Padding */
+  /* This ensures the space inside the box grows/shrinks with the screen */
+  padding: clamp(20px, 5vw, 60px); 
 
-  display: block;
-
-  margin-left: auto;
-  margin-right: auto;
-
-  margin-top: 70px;
-
-  /* From https://css.glass */
+  /* 4. Keep your existing glassmorphism */
   background: rgba(188, 188, 188, 0.15);
   border-radius: 12.5px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -245,11 +245,9 @@ a:active {
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(188, 188, 188, 0.3);
 
-  padding:  20px 60px;
-
+  display: block;
+  margin: 70px auto 100px auto; /* Combined margins */
   position: relative;
-
-  margin-bottom: 100px;
 }
 
 .face {
