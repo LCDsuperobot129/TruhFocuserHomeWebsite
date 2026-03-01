@@ -191,7 +191,7 @@ a:active {
 
 /* 3. THE "BATTERIES" (Timing and Position) */
 /* Without these, they stay at the top-left forever */
-.emoji:nth-child(1) { left: 5%;  animation-duration: 14s;  animation-delay: 0s; }
+.emoji:nth-child(1) { left: 5%;  animation-duration: 13s;  animation-delay: 0s; }
 .emoji:nth-child(2) { left: 15%; animation-duration: 15s; animation-delay: 2s; }
 .emoji:nth-child(3) { left: 30%; animation-duration: 10s; animation-delay: 4s; }
 .emoji:nth-child(4) { left: 50%; animation-duration: 20s; animation-delay: 1s; }
