@@ -314,9 +314,11 @@ a:active {
 	padding: 20px;
 	
 	margin-top: 50px;
+  margin-bottom: 400px;
  
 	
 	position: relative;
+  right: -24%;
 	width: 600px;
 
   /* From https://css.glass */
@@ -329,6 +331,24 @@ a:active {
   
 }
 
+.glass-decoration {
+    /* Aspect Ratio: maintains a rectangular shape relative to width */
+    width: 80px;
+    height: 120px; 
+
+    /* Liquid Glass Effect (Matching your existing style) */
+    background: rgba(165, 165, 165, 0.05);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(165, 165, 165, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    
+    /* Make them look slightly "deeper" or "behind" */
+    opacity: 0.6;
+    pointer-events: none;
+}
+
 #testimonial-slide-container li
 {
 	float: left;
@@ -336,6 +356,7 @@ a:active {
 	width: 600px;
 	display: inline-block;
 	height: 200px;
+  
 }
 
 #testimonial-slide-container ul
@@ -358,7 +379,7 @@ a:active {
 
 .testimonial-slide
 {
- display: table;
+  display: table;
 	margin: 0 auto;
 	padding: 20px 0 0 0;
 	width: 550px;
@@ -442,4 +463,55 @@ a:active {
     -webkit-mask-image: radial-gradient(circle, black 40%, transparent 80%);
     z-index: 1;
     pointer-events: none;
+}
+
+/* Shared Styles for all Leveling Rectangles */
+.glass-deco, .glass-deco2 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* This keeps it vertically centered */
+    width: 60px;
+    height: 110px;
+    background: rgba(165, 165, 165, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(165, 165, 165, 0.3);
+    pointer-events: none;
+    z-index: 1; /* Sits behind the main content box */
+}
+
+/* Positioning for Testimonial Rectangles (relative to 600px box) */
+.deco-left { 
+    left: -80px; 
+}
+.deco-right { 
+    right: -80px; 
+}
+
+/* Positioning for Instruction Rectangles (relative to 800px box) */
+.deco-left2 { 
+    left: -90px; 
+}
+.deco-right2 { 
+    right: -90px; 
+}
+
+/* Fix: Make sure the instruction box doesn't hide things sticking out of it */
+.instruction {
+    /* Keep your existing flex/background styles */
+    overflow: visible !important; 
+}
+
+/* Hide on small screens so they don't squash the text */
+@media (max-width: 1050px) {
+    .glass-deco, .glass-deco2 {
+        display: none;
+    }
+}
+
+@keyframes levitateRight {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-100px); }
+    100% { transform: translateX(0); }
 }
