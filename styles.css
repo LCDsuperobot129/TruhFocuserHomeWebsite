@@ -171,7 +171,7 @@ a:active {
     top: 0;
     left: 0;
     width: 100%;
-    height: 325vh; 
+    height: 190vh; 
     z-index: 0; /* Sit above the background image, but below text */
     overflow: hidden;
     pointer-events: none; 
@@ -206,7 +206,7 @@ a:active {
         transform: translateY(-25px) rotate(0deg);
     }
     100% {
-        transform: translateY(325vh) rotate(360deg);
+        transform: translateY(190vh) rotate(360deg);
     }
 }
 
@@ -256,6 +256,8 @@ a:active {
   border: 1px solid rgba(165, 165, 165, 0.3);
   margin: 70px auto 300px auto;
   position: relative;
+
+  margin-bottom: 400px;
 }
 
 .face {
@@ -318,7 +320,7 @@ a:active {
  
 	
 	position: relative;
-  right: -24%;
+  right: -20%;
 	width: 600px;
 
   /* From https://css.glass */
@@ -446,23 +448,37 @@ a:active {
 
 .star-pattern-overlay {
     position: absolute;
-    top: -110%;
-    left: -10%;
+    /* Adjusted top to be relative to the container rather than a massive negative percentage */
+    top: -825px;
+    left: -7.5%;
     width: 100%;
     height: 100% !important;
     min-height: 600px;
     
-    /* Added fixed width="12" and height="12" inside the SVG tag below */
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12px" height="12px" fill="white" opacity="0.1"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>');
     
-    /* Now you can crank this up as high as you want (e.g., 150px) and stars will stay small */
     background-size: 100px 100px; 
     background-repeat: repeat;
+
+    /* ANIMATION ADDED HERE */
+    /* 20s is the speed - increase for slower, decrease for faster */
+    animation: moveStarsRight 20s linear infinite;
 
     mask-image: radial-gradient(circle, black 40%, transparent 80%);
     -webkit-mask-image: radial-gradient(circle, black 40%, transparent 80%);
     z-index: 1;
     pointer-events: none;
+}
+
+/* The logic for the infinite scroll */
+@keyframes moveStarsRight {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        /* This moves the background 100px (one full tile) to the right */
+        background-position: 100px 0;
+    }
 }
 
 /* Shared Styles for all Leveling Rectangles */
