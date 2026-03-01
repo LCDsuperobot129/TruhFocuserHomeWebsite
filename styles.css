@@ -171,7 +171,7 @@ a:active {
     top: 0;
     left: 0;
     width: 100%;
-    height: 190vh; 
+    height: 300vh; 
     z-index: 0; /* Sit above the background image, but below text */
     overflow: hidden;
     pointer-events: none; 
@@ -206,7 +206,7 @@ a:active {
         transform: translateY(-25px) rotate(0deg);
     }
     100% {
-        transform: translateY(190vh) rotate(360deg);
+        transform: translateY(302vh) rotate(360deg);
     }
 }
 
@@ -330,6 +330,8 @@ a:active {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(165, 165, 165, 0.3);
+
+  z-index: 5;
   
 }
 
