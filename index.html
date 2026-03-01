@@ -151,7 +151,8 @@
         const target = document.querySelector(targetSelector);
         if (!target) return;
 
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+        // Subtract 100 (or whatever pixels you want) to leave space at the top
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 125;
         const startPosition = window.pageYOffset;
         const distance = targetPosition - startPosition;
         const duration = 1500; // Time in milliseconds (1.5 seconds)
