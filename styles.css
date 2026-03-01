@@ -1,9 +1,9 @@
 body {
     background-image: url("images/Unknown-8.jpg");
     
-    background-size: 100vw 195vh;
+    background-size: 100vw 200vh;
     background-repeat: no-repeat;
-    min-height: 195vh;
+    min-height: 200vh;
 
     overflow-x: hidden;
 }
