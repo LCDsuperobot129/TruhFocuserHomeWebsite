@@ -24,10 +24,6 @@ html, body {
     margin-left: 10rem;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 /* From Uiverse.io by cybrejon */ 
 a {
   color: rgba(255, 255, 255, 0.692);

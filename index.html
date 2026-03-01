@@ -148,34 +148,42 @@
     });
 
         function slowScrollTo(targetSelector) {
-        const target = document.querySelector(targetSelector);
-        if (!target) return;
+            const target = document.querySelector(targetSelector);
+            if (!target) return;
 
-        // Subtract 100 (or whatever pixels you want) to leave space at the top
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 125;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        const duration = 1500; // Time in milliseconds (1.5 seconds)
-        let start = null;
+            // 1. Force Chrome to stop any current CSS transitions
+            document.documentElement.style.scrollBehavior = 'auto';
 
-        // This is the "Ease In Out" math
-        function easeInOutQuad(t, b, c, d) {
-            t /= d / 2;
-            if (t < 1) return c / 2 * t * t + b;
-            t--;
-            return -c / 2 * (t * (t - 2) - 1) + b;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 135;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = 1500; 
+            let start = null;
+
+            function easeInOutQuad(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            function animation(currentTime) {
+                if (start === null) start = currentTime;
+                const timeElapsed = currentTime - start;
+                const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                
+                window.scrollTo(0, run);
+
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                } else {
+                    // 2. Optional: Put it back to auto if you want regular jumps elsewhere
+                    document.documentElement.style.scrollBehavior = 'auto';
+                }
+            }
+
+            requestAnimationFrame(animation);
         }
-
-        function animation(currentTime) {
-            if (start === null) start = currentTime;
-            const timeElapsed = currentTime - start;
-            const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
-            window.scrollTo(0, run);
-            if (timeElapsed < duration) requestAnimationFrame(animation);
-        }
-
-        requestAnimationFrame(animation);
-    }
 </script>
 </body>
 </html>
