@@ -3,9 +3,13 @@ body {
     
     background-size: cover;
     background-repeat: no-repeat;
-    height: 250vh;
-    
-    
+    height: 195vh;
+
+    overflow-x: hidden;
+}
+
+html, body {
+  overscroll-behavior: none;
 }
 
 .HeroText {
@@ -18,6 +22,10 @@ body {
     margin-top: 185px;
 
     margin-left: 10rem;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /* From Uiverse.io by cybrejon */ 
@@ -101,31 +109,33 @@ a:active {
  */
 /* 1. Update the class to handle the "landing" state */
 /* The container handles the positioning and the entry animation */
+/* The container handles the slide-in and the 3D space */
 .image-container {
     position: absolute; 
     left: 67rem; 
-    top: 160px;
-    perspective: 1000px; /* Perspective goes on the parent for 3D */
+    top: 150px;
+    perspective: 1200px; 
+    z-index: 5;
 }
 
-/* The actual image handles the tilt and the hover */
 .tilt-card {
     width: auto; 
     height: 70vh; 
     border-radius: 10px; 
     box-shadow: -25px 20px 40px rgba(0, 0, 0, 0.45);
     
-    /* Base Tilt State */
+    /* Default starting position */
     transform: rotateX(10deg) rotateY(-20deg) rotateZ(2deg);
     
-    /* Smooth transition for hover */
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.8s ease;
+    /* Short transition for smooth "following" */
+    transition: transform 0.1s linear, box-shadow 0.5s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
-/* Hover now works because it's not fighting the animation! */
+/* On hover, we just increase the scale and shadow; JS handles the rotation */
 .tilt-card:hover {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1.03);
-    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.6);
 }
 
 /* Entry Animation (Only handles sliding the container) */
@@ -150,7 +160,7 @@ a:active {
     top: 0;
     left: 0;
     width: 100%;
-    height: 250vh; 
+    height: 195vh; 
     z-index: 0; /* Sit above the background image, but below text */
     overflow: hidden;
     pointer-events: none; 
@@ -185,6 +195,95 @@ a:active {
         transform: translateY(-25px) rotate(0deg);
     }
     100% {
-        transform: translateY(250vh) rotate(360deg);
+        transform: translateY(195vh) rotate(360deg);
     }
+}
+
+.grid-overlay {
+    position: absolute;
+    /* Aligns it to the right where your image is */
+    left: 43.5rem; 
+    top: -2.5vh;
+    
+    /* Size of the circular area */
+    width: 75rem;
+    height: 75rem;
+    
+    /* The Grid Pattern */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+
+    /* 1. This clips the container itself into a circle */
+    border-radius: 50%;
+
+    /* 2. This makes the grid lines fade out smoothly toward the edges */
+    /* This is what prevents the 'rectangular' or 'chopped' look */
+    mask-image: radial-gradient(circle, black 40%, transparent 75%);
+    -webkit-mask-image: radial-gradient(circle, black 40%, transparent 75%);
+
+    z-index: -1;
+    pointer-events: none;
+}
+
+.instruction {
+  height: 455px;
+
+  width: 50%;
+
+  background-color: rgba(132, 132, 132, 0.094);
+
+  display: block;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  margin-top: 70px;
+
+  /* From https://css.glass */
+  background: rgba(188, 188, 188, 0.15);
+  border-radius: 12.5px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(188, 188, 188, 0.3);
+
+  padding: 20px;
+
+  position: relative;
+}
+
+.face {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(50%, 50%);
+  width: 15rem;
+  height: auto;
+  
+  /* Initial state: both are hidden until animation starts */
+  opacity: 0;
+  /* Apply the animation: 0.8s duration, loops forever */
+  animation: alternate-face 0.8s infinite;
+}
+
+/* Face 1 starts immediately */
+.face1 {
+  animation-delay: 0s;
+}
+
+/* Face 2 starts halfway through the cycle */
+.face2 {
+  animation-delay: 0.4s; /* Half of the 0.8s duration */
+}
+
+@keyframes alternate-face {
+  /* Spend most of the time visible, then vanish instantly */
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
 }
