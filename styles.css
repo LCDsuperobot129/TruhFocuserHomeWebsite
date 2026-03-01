@@ -320,7 +320,7 @@ a:active {
  
 	
 	position: relative;
-  right: -20%;
+  right: -24%;
 	width: 600px;
 
   /* From https://css.glass */
@@ -450,7 +450,7 @@ a:active {
     position: absolute;
     /* Adjusted top to be relative to the container rather than a massive negative percentage */
     top: -825px;
-    left: -7.5%;
+    left: -7%;
     width: 100%;
     height: 100% !important;
     min-height: 600px;
